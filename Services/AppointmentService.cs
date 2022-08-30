@@ -43,5 +43,18 @@ namespace SwimmingPoolNew.Services
             return students;
         }
 
+        public List<StyleVM> GetStyleList()
+        {
+
+            var styles = {"rowing", "breast", "back","butterfly"};
+            return styles;
+        }
+
+        public List<ClassTypeVM> GetClassTypeList()
+        {
+            var classTypes = {"private", "group"};
+            return classTypes;
+        }
+
     }
 }

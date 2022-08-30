@@ -7,6 +7,8 @@ namespace SwimmingPoolNew.Services
     {
         public List<StudentVM> GetStudentList();
         public List<TeacherVM> GetTeacherList();
+        public List<ClassTypeVM> GetClassTypeList();
+        public List<StyleVM> GetStyleList();
 
     }
 }

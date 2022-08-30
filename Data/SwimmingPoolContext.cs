@@ -15,5 +15,7 @@ namespace SwimmingPoolNew.Data
 
         public DbSet<SwimmingPoolNew.Models.Teacher> Teacher { get; set; }
         public DbSet<SwimmingPoolNew.Models.TypeClass> TypeClass { get; set; }
+        public DbSet<SwimmingPoolNew.Models.Style> Style { get; set; }
+
     }
 }

@@ -23,6 +23,9 @@ namespace SwimmingPoolNew.Controllers
         {
             ViewBag.TeacherList = _appointmentService.GetTeacherList();
             ViewBag.StudentList = _appointmentService.GetStudentList();
+            ViewBag.TypeClassList = _appointmentService.GetClassTypeList();
+            ViewBag.StyleList = _appointmentService.GetStyleList();
+            ViewBag.Duration = Helper.GetTimeDropDown();
 
             return View();
         }

@@ -18,7 +18,7 @@ namespace SwimmingPoolNew.Models
         public virtual TypeClass TypeClass{ get; set; }
         [DisplayName("Type Style")]
         [Required]
-        public string TypeStyle { get; set; }
+        public virtual Style Style { get; set; }
 
 
     }

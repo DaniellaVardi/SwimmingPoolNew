@@ -6,6 +6,8 @@ namespace SwimmingPoolNew.Models
 {
     public class Teacher
     {
+
+
         [Key]
         public int TeacherId { get; set; }
         [DisplayName("Teacher Name")]
@@ -14,8 +16,7 @@ namespace SwimmingPoolNew.Models
         [DisplayName("Style")]
         [Required]
         public string Style { get; set; } = string.Empty;
-        [DisplayName("Available")]
-        [Required]
-        public DateTime Available { get; set; }
+
+
     }
 }

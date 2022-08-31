@@ -18,9 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Style)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Available)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -33,9 +31,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Style)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Available)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.TeacherId">Edit</a> |

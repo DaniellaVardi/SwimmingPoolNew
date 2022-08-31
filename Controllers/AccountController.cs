@@ -5,6 +5,9 @@ using SwimmingPoolNew.Models;
 using System.Threading.Tasks;
 using SwimmingPoolNew.Data;
 using SwimmingPoolNew.Utility;
+using System.Linq;
+using System.Xml.Linq;
+using System;
 
 namespace SwimmingPoolNew.Controllers
 {
@@ -72,13 +75,15 @@ namespace SwimmingPoolNew.Controllers
                 };
 
                 var result = await _userManager.CreateAsync(user,model.Password);
+
                 if(result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user,model.RoleName);
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Appointment");
                 }
-                foreach(var error in result.Errors)
+                            
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }

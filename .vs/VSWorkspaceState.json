@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Controllers",
+    "\\Controllers\\Api",
+    "\\Models",
+    "\\Services",
+    "\\wwwroot",
+    "\\wwwroot\\js"
   ],
+  "SelectedNode": "\\Controllers\\Api\\AppintmentApiController.cs",
   "PreviewInSolutionExplorer": false
 }

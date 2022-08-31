@@ -40,7 +40,9 @@
     <div class="form-group row">
         <label class="col-md-2" asp-for="RoleName"></label>
         <div class="col-md-10">
-            <select asp-for="RoleName" asp-items="@SwimmingPoolNew.Utility.Helper.GetRolesDropDown()" class="form-control"></select>
+                     <select asp-for="RoleName"
+                    asp-items="@SwimmingPoolNew.Utility.Helper.GetRolesForDropDown(User.IsInRole(SwimmingPoolNew.Utility.Helper.Admin))"
+                    class="form-control"></select>
             <span asp-validation-for="RoleName" class="text-danger"></span>
         </div>
     </div>

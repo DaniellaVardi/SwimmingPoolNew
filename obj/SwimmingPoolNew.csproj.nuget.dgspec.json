@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shnis\\source\\repos\\SwimmingPoolNew\\SwimmingPoolNew\\SwimmingPoolNew.csproj": {}
+    "C:\\Users\\shnis\\source\\repos\\DaniellaVardi\\SwimmingPoolNew\\SwimmingPoolNew.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shnis\\source\\repos\\SwimmingPoolNew\\SwimmingPoolNew\\SwimmingPoolNew.csproj": {
+    "C:\\Users\\shnis\\source\\repos\\DaniellaVardi\\SwimmingPoolNew\\SwimmingPoolNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shnis\\source\\repos\\SwimmingPoolNew\\SwimmingPoolNew\\SwimmingPoolNew.csproj",
+        "projectUniqueName": "C:\\Users\\shnis\\source\\repos\\DaniellaVardi\\SwimmingPoolNew\\SwimmingPoolNew.csproj",
         "projectName": "SwimmingPoolNew",
-        "projectPath": "C:\\Users\\shnis\\source\\repos\\SwimmingPoolNew\\SwimmingPoolNew\\SwimmingPoolNew.csproj",
+        "projectPath": "C:\\Users\\shnis\\source\\repos\\DaniellaVardi\\SwimmingPoolNew\\SwimmingPoolNew.csproj",
         "packagesPath": "C:\\Users\\shnis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shnis\\source\\repos\\SwimmingPoolNew\\SwimmingPoolNew\\obj\\",
+        "outputPath": "C:\\Users\\shnis\\source\\repos\\DaniellaVardi\\SwimmingPoolNew\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shnis\\AppData\\Roaming\\NuGet\\NuGet.Config",

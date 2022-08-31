@@ -218,6 +218,45 @@ namespace SwimmingPoolNew.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SwimmingPoolNew.Models.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdminId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsTeacherApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StudentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeacherId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("classTypeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("styleId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appintments");
+                });
+
             modelBuilder.Entity("SwimmingPoolNew.Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
@@ -233,18 +272,35 @@ namespace SwimmingPoolNew.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("StyleId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("TypeClassClassId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TypeStyle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("StudentId");
+
+                    b.HasIndex("StyleId");
 
                     b.HasIndex("TypeClassClassId");
 
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("SwimmingPoolNew.Models.Style", b =>
+                {
+                    b.Property<int>("StyleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StyleId");
+
+                    b.ToTable("Style");
                 });
 
             modelBuilder.Entity("SwimmingPoolNew.Models.Teacher", b =>
@@ -253,9 +309,6 @@ namespace SwimmingPoolNew.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Available")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Style")
                         .IsRequired()
@@ -342,9 +395,15 @@ namespace SwimmingPoolNew.Migrations
 
             modelBuilder.Entity("SwimmingPoolNew.Models.Student", b =>
                 {
+                    b.HasOne("SwimmingPoolNew.Models.Style", "Style")
+                        .WithMany()
+                        .HasForeignKey("StyleId");
+
                     b.HasOne("SwimmingPoolNew.Models.TypeClass", "TypeClass")
                         .WithMany()
                         .HasForeignKey("TypeClassClassId");
+
+                    b.Navigation("Style");
 
                     b.Navigation("TypeClass");
                 });

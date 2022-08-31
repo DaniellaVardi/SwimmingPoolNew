@@ -1,22 +1,77 @@
 ﻿<div class="modal fade" role="dialog" id="appointmentInput" data-backdrop="static" data-keyboard="false">
-    <div class="model-dialog">
-        <div class="model-content">
-            <form id="apppointmentForm" autocomplete="off" novalidate="novalidate">
-                <div class="model-header">
-                    <h4 class="model-title">Add/Edit Class</h4>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="apointmentForm" autocomplete="off" novalidate="novalidate">
+                <div class="modal-header">
+                    @*IF ADMIN*@
+                    @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Admin))
+                    {
+
+                        <h4 class="modal-title">Add/Edit Class</h4>
+                    }
+                    else
+                    {
+                        <h4 class="modal-title">Class Details</h4>
+                    }
                 </div>
-                <div class="model-body">
-                    @*<div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" maxlength="100" class="form-control" id="title" />
-        </div>*@
-                    <div class="form-group">
-                        <label for="title"> Select Type</label>
-                        <select id="ClassId" asp-items="@(new SelectList(ViewBag.ClassTypeList,"Id","Name"))" class="form-control"></select>
+                <div class="modal-body">
+@*                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" maxlength="100" class="form-control" id="title" />
                     </div>
                     <div class="form-group">
-                        <label for="title"> Select Style</label>
-                        <select id="StuleId" asp-items="@(new SelectList(ViewBag.StyleList,"Id","Name"))" class="form-control"></select>
+                        <label for="description">Descriptions</label>
+                        <textarea type="text" class="form-control" id="description"></textarea>
+                    </div>*@
+                    <div class="form-group">
+                        <label for="title">Select Style</label>
+                        <select id="styleId" asp-items="@(new SelectList(ViewBag.StyleList, "Id", "Name"))" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Select Class Type</label>
+                        <select id="classTypeId" asp-items="@(new SelectList(ViewBag.TypeClassList, "Id", "Name"))" class="form-control"></select>
+                    </div>
+                    @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Admin))
+                    {
+                        <div class="form-group">
+                            <label for="title">Select Student</label>
+                            <select id="studentId" asp-items="@(new SelectList(ViewBag.StudentList, "Id", "Name"))" class="form-control"></select>
+                        </div>
+                    }
+                    else
+                    {
+                        @*IF TEACHER*@
+                        @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Teacher))
+                        {
+                            <div class="form-group">
+                                <label for="lblStudentName">Student Name</label>
+                                <label class="form-control" disabled id="lblStudentName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="lblStatus">Status</label>
+                                <label class="form-control" disabled id="lblStatus" />
+                            </div>
+                        }
+                        @*IF STUDENT*@
+                        @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Student))
+                        {
+@*                            <div class="form-group">
+                                <label for="lblTeacherName">Teacher Name</label>
+                                <label class="form-control" disabled id="lblTeacherName" />
+                            </div>*@
+                            <div class="form-group">
+                                <label for="title">Select Teacher</label>
+                                <select id="teacherId" asp-items="@(new SelectList(ViewBag.TeacherList, "Id", "Name"))" class="form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="lblStatus">Status</label>
+                                <label class="form-control" disabled id="lblStatus" />
+                            </div>
+                        }
+                    }
+                    <div class="form-group">
+                        <label for="appointmentDate">Start Date Time</label>
+                        <input class="form-control" id="appointmentDate" />
                     </div>
                     <div class="form-group">
                         <label for="title">Duration</label>
@@ -24,9 +79,20 @@
                     </div>
                     <input type="hidden" id="id" />
                 </div>
-                <div class="model-footer">
-                    <button type="button" class="btn btb-secondary" onclick="onCloseModal();">Close</button> &nbsp;
-                    <button type="button" id="btnSubmit" class="btn btb-success" onclick="onSubmitForm();">Submit</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="onCloseModal();">Close</button> &nbsp;
+
+                    @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Admin))
+                    {
+                        <button type="button" id="btnSubmit" class="btn btn-success" onclick="onSubmitForm();">Submit</button>
+                        <button type="button" id="btnDelete" class="btn btn-danger" onclick="onDeleteAppointment();">Delete</button>
+                    }
+
+                    @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Teacher))
+                    {
+                        <button type="button" id="btnConfirm" class="btn btn-success" onclick="onConfirm();">Confirm</button>
+                        <button type="button" id="btnDelete" class="btn btn-danger" onclick="onDeleteAppointment();">Delete</button>
+                    }
                 </div>
             </form>
         </div>

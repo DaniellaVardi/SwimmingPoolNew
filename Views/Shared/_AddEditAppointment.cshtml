@@ -3,7 +3,6 @@
         <div class="modal-content">
             <form id="apointmentForm" autocomplete="off" novalidate="novalidate">
                 <div class="modal-header">
-                    @*IF ADMIN*@
                     @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Admin))
                     {
 
@@ -15,14 +14,6 @@
                     }
                 </div>
                 <div class="modal-body">
-@*                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" maxlength="100" class="form-control" id="title" />
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Descriptions</label>
-                        <textarea type="text" class="form-control" id="description"></textarea>
-                    </div>*@
                     <div class="form-group">
                         <label for="title">Select Style</label>
                         <select id="styleId" asp-items="@(new SelectList(ViewBag.StyleList, "Id", "Name"))" class="form-control"></select>
@@ -40,7 +31,7 @@
                     }
                     else
                     {
-                        @*IF TEACHER*@
+                        @*IF TEACHER HE SEE*@
                         @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Teacher))
                         {
                             <div class="form-group">
@@ -52,20 +43,12 @@
                                 <label class="form-control" disabled id="lblStatus" />
                             </div>
                         }
-                        @*IF STUDENT*@
+                        @*IF STUDENT HE SEE*@
                         @if (User.IsInRole(SwimmingPoolNew.Utility.Helper.Student))
                         {
-@*                            <div class="form-group">
-                                <label for="lblTeacherName">Teacher Name</label>
-                                <label class="form-control" disabled id="lblTeacherName" />
-                            </div>*@
                             <div class="form-group">
                                 <label for="title">Select Teacher</label>
                                 <select id="teacherId" asp-items="@(new SelectList(ViewBag.TeacherList, "Id", "Name"))" class="form-control"></select>
-                            </div>
-                            <div class="form-group">
-                                <label for="lblStatus">Status</label>
-                                <label class="form-control" disabled id="lblStatus" />
                             </div>
                         }
                     }

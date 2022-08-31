@@ -22,7 +22,7 @@ function InitializeCalendar() {
                 selectable: true,
                 editable: false,
                 select: function (event) {
-                    onShowModel(event, null);
+                    onShowModal(event, null);
                 },
                 eventDisplay: 'block',
                 events: function (fetchInfo, successCallback, failureCallback) {
@@ -66,12 +66,12 @@ function InitializeCalendar() {
 }
 function onShowModal(obj, isEventDetail) {
     if (isEventDetail != null) {
-
-
         $("#appointmentDate").val(obj.startDate);
         $("#duration").val(obj.duration);
         $("#teacherId").val(obj.teacherId);
         $("#studentId").val(obj.studentId);
+        $("#styleId").val(obj.styleId);
+        $("#classTypeId").val(obj.classTypeId);
         $("#id").val(obj.id);
         $("#lblStudentName").html(obj.StudentName);
         $("#lblTeacherName").html(obj.TeacherName);
@@ -99,8 +99,6 @@ function onShowModal(obj, isEventDetail) {
 function onCloseModal() {
     $("#apointmentForm")[0].reset();
     $("#id").val(0);
-    $("#title").val('');
-    $("#description").val('');
     $("#appointmentDate").val('');
     $("#appointmentInput").modal("hide");
 }
@@ -113,6 +111,8 @@ function onSubmitForm() {
             Duration: $("#duration").val(),
             teacherId: $("#teacherId").val(),
             studentId: $("#studentId").val(),
+            styleId: $("#styleId"),
+            classTypeId: $("#classTypeId"),       
         };
 
         $.ajax({

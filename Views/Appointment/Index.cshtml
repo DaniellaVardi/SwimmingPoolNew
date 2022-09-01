@@ -10,7 +10,8 @@
                 <label> Select Teacher</label>
                 @Html.DropDownList("teacherId", new SelectList(ViewBag.TeacherList, "Id", "Name"), new
                 {
-                    @class = "form-control select2"
+                    @class = "form-control select2",
+                    @onchange= "onTeacherChange();"
                 })
             </div>
         }

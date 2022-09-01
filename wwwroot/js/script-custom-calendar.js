@@ -13,11 +13,18 @@ function InitializeCalendar() {
         var calendarEl = document.getElementById('calendar');
         if (calendarEl != null) {
             calendar = new FullCalendar.Calendar(calendarEl, {
+             //   eventLimit: true,
                 initialView: 'dayGridMonth',
                 headerToolbar: {
                     left: 'prev,next,today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    //views: {
+                    //    timeGridDay: {
+                    //        dayMaxEventRows: 5,
+                    //        eventLimit: 2
+                    //    }
+                    //},
                 },
                 selectable: true,
                 editable: false,
@@ -36,7 +43,7 @@ function InitializeCalendar() {
                                 $.each(response.dataenum, function (i, data) {
                                     events.push({
                                         title: data.title,
-                                        description: data.description,
+                                        //description: data.description,
                                         start: data.startDate,
                                         end: data.endDate,
                                         backgroundColor: data.isTeacherApproved ? "#28a745" : "#dc3545",
@@ -66,6 +73,7 @@ function InitializeCalendar() {
 }
 function onShowModal(obj, isEventDetail) {
     if (isEventDetail != null) {
+        $("#title").val(obj.title);
         $("#appointmentDate").val(obj.startDate);
         $("#duration").val(obj.duration);
         $("#teacherId").val(obj.teacherId);
@@ -99,7 +107,12 @@ function onShowModal(obj, isEventDetail) {
 function onCloseModal() {
     $("#apointmentForm")[0].reset();
     $("#id").val(0);
+    $("#title").val('');
     $("#appointmentDate").val('');
+    $("#duration").val('');
+    $("#studentId").val('');
+    $("#styleId").val('');
+    $("#classTypeId").val('');
     $("#appointmentInput").modal("hide");
 }
 
@@ -107,12 +120,13 @@ function onSubmitForm() {
     if (checkValidation()) {
         var requestData = {
             Id: parseInt($("#id").val()),
+            Title: $("#title").val(),
             StartDate: $("#appointmentDate").val(),
             Duration: $("#duration").val(),
-            teacherId: $("#teacherId").val(),
-            studentId: $("#studentId").val(),
-            styleId: $("#styleId"),
-            classTypeId: $("#classTypeId"),       
+            TeacherId: $("#teacherId").val(),
+            StudentId: $("#studentId").val(),
+            StyleId: $("#styleId").val(),
+            ClassTypeId: $("#classTypeId").val(),       
         };
 
         $.ajax({
@@ -154,7 +168,6 @@ function checkValidation() {
     else {
         $("#appointmentDate").removeClass('error');
     }
-
     return isValid;
 
 }

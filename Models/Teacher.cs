@@ -17,6 +17,5 @@ namespace SwimmingPoolNew.Models
         [Required]
         public string Style { get; set; } = string.Empty;
 
-
     }
 }

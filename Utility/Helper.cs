@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SwimmingPoolNew.Models;
 
 namespace SwimmingPoolNew.Utility
 {
@@ -58,5 +59,20 @@ namespace SwimmingPoolNew.Utility
             //}
             return duration;
         }
+
+        public static Boolean checkAppointment(Appointment apt)
+        {
+            bool isOk = true;
+            int max = 2;
+            if(true)
+            {
+
+                /// is listappointment.startDate == 2 || appointment1.typeclassId == appointment.typeclassId
+                isOk = false;
+                return isOk;
+            }
+            return isOk;
+        }
+
     }
 }

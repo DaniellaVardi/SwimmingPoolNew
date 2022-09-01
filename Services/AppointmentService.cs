@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 using System;
 using System.Reflection;
 using  SwimmingPoolNew.Models.ViewModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 namespace SwimmingPoolNew.Services
 {
     public class AppointmentService : IAppointmentService
@@ -22,9 +27,10 @@ namespace SwimmingPoolNew.Services
         public  async Task<int> AddUpdate(AppointmentVM model)
         {
             var startDate = DateTime.Parse(model.StartDate);
-            var endDate = DateTime.Parse(model.EndDate).AddMinutes(Convert.ToDouble(model.Duration));
-
-            if(model != null && model.Id > 0)
+            var endDate = DateTime.Parse(model.StartDate).AddMinutes(Convert.ToDouble(model.Duration));
+            var student = _db.Users.FirstOrDefault(u => u.Id == model.StudentId);
+            var teacher = _db.Users.FirstOrDefault(u => u.Id == model.TeacherId);
+            if (model != null && model.Id > 0)
             {
                 var appointment = _db.Appintments.FirstOrDefault(x => x.Id == model.Id);
 
@@ -32,8 +38,8 @@ namespace SwimmingPoolNew.Services
                 appointment.StartDate = startDate;
                 appointment.EndDate = endDate;
                 appointment.Duration = model.Duration;
-                appointment.styleId = model.styleId;
-                appointment.classTypeId = model.classTypeId;
+                appointment.StyleId = model.StyleId;
+                appointment.ClassTypeId = model.ClassTypeId;
                 appointment.TeacherId = model.TeacherId;
                 appointment.StudentId = model.StudentId;
                 appointment.IsTeacherApproved = false;
@@ -49,8 +55,8 @@ namespace SwimmingPoolNew.Services
                     StartDate = startDate,
                     EndDate = endDate,
                     Duration = model.Duration,
-                    styleId = model.styleId,
-                    classTypeId = model.classTypeId,
+                    StyleId = model.StyleId,
+                    ClassTypeId = model.ClassTypeId,
                     TeacherId = model.TeacherId,
                     StudentId = model.StudentId,
                     IsTeacherApproved = model.IsTeacherApproved,
@@ -104,10 +110,13 @@ namespace SwimmingPoolNew.Services
                 Id = c.Id,
                 StartDate = c.StartDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 EndDate = c.EndDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                Title = c.Title,
                 Duration = c.Duration,
                 IsTeacherApproved = c.IsTeacherApproved,
                 StudentId = c.StudentId,
                 TeacherId = c.TeacherId,
+                StyleId = c.StyleId,
+                ClassTypeId = c.ClassTypeId,
                 StudentName = _db.Users.Where(x => x.Id == c.StudentId).Select(x => x.Name).FirstOrDefault(),
                 TeacherName = _db.Users.Where(x => x.Id == c.TeacherId).Select(x => x.Name).FirstOrDefault(),
             }).SingleOrDefault();
@@ -141,6 +150,16 @@ namespace SwimmingPoolNew.Services
             return students;
         }
 
+        public List<AppointmentVM> GetAppointmentList()
+        {
+            var appointments = (from st in _db.Appintments
+                            select new AppointmentVM
+                            {
+                                Id = st.Id,
+                            }).ToList();
+            return appointments;
+        }
+
         public List<StyleVM> GetStyleList()
         {
             var styles = (from st in _db.Style
@@ -171,6 +190,7 @@ namespace SwimmingPoolNew.Services
                 Id = c.Id,
                 StartDate = c.StartDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 EndDate = c.EndDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                Title = c.Title,
                 Duration = c.Duration,
                 IsTeacherApproved = c.IsTeacherApproved
             }).ToList();

@@ -11,6 +11,8 @@ namespace SwimmingPoolNew.Services
         public List<TeacherVM> GetTeacherList();
         public List<ClassTypeVM> GetClassTypeList();
         public List<StyleVM> GetStyleList();
+
+        public List<AppointmentVM> GetAppointmentList();
         public Task<int> AddUpdate(AppointmentVM model);
 
         public List<AppointmentVM> TeachersEventsById(string teacherId);

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SwimmingPoolNew.Data;
 
 namespace SwimmingPoolNew.Migrations
 {
     [DbContext(typeof(SwimmingPoolContext))]
-    partial class SwimmingPoolContextModelSnapshot : ModelSnapshot
+    [Migration("20220901111941_updateName1")]
+    partial class updateName1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
